@@ -1,0 +1,97 @@
+/* Estilos para la página de Agregar Cliente - Formulario */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.profile-button:hover {
+    color: #0056b3;
+}
+
+.menu-options {
+    text-align: center;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+input[type="radio"] {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto; /* Centrar el espacio de entrada */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.back-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-button a {
+    display: inline-block;
+    background-color: #f9f9f9;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.back-button a i {
+    margin-right: 5px;
+}

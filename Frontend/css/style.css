@@ -1,0 +1,182 @@
+/* index */
+
+
+
+/* Estilos para el cuerpo del sitio */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("https://www.occ.com.mx/blog/wp-content/uploads/2020/07/doctores-2000x12001-1920x1152-1.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
+
+/* Contenedor principal */
+.content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+/* Icono de la farmacia */
+.icon-pharmacy {
+    margin-bottom: 20px;
+    color: #007bff;
+    font-size: 4em;
+}
+
+/* Encabezado */
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+
+
+/* Resto de tus estilos si es necesario */
+
+/* administrado---------------------------------------------------------*/
+/* Estilos adicionales */
+.menu-options {
+    text-align: center;
+    margin-top: 60px;
+    scroll-margin-right: 150px; /* Agrega un margen izquierdo */
+}
+
+.menu-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 5px 5px;
+    width: 155px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra al botón */
+}
+
+.menu-button i {
+    font-size: 2em;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.menu-button:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos adicionales */
+.profile-bar {
+    display: flex;
+    justify-content: space-between; /* Coloca los botones en los extremos */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.profile-button:hover {
+    color: #0056b3;
+}
+ /* admiclientes*/
+
+/* Estilos para los botones Agregar, Listar, Eliminar y Actualizar */
+.action-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid #007bff;
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    margin-right: 10px;
+    padding: 10px 15px;
+}
+
+.action-button i {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.action-button:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Alinear los botones a la derecha */
+.menu-options {
+    text-align: right;
+}
+/* listar clientes*/
+
+/* Estilos para la página de Listar Clientes */
+.content {
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.clientes-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.clientes-table th,
+.clientes-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.clientes-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.back-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-button a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.back-button a:hover {
+    background-color: #0056b3;
+}

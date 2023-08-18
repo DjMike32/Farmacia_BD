@@ -1,0 +1,94 @@
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 3px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+    margin: 0;
+}
+
+/*---Botones de la primer pantalla---*/
+.prod-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    top: 20px;
+    right: 20px;
+}
+
+.prod-button img {
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 30px;
+    height: auto;
+ }
+.car-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    top: 20px;
+    right: 100px;
+}
+ .car-button img {
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 30px;
+    height: auto;
+ }
+
+ .log-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    top: 20px;
+    right: 250px;
+}
+.log-button img {
+    vertical-align: middle;
+    margin-right: 10px;
+    width: 30px;
+    height: auto;
+}
+
+
+/* Estilos de pie de página */
+footer {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 3px;
+}

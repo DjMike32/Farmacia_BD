@@ -1,0 +1,74 @@
+/* Resetear estilos por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos específicos para la pantalla de inicio de sesión */
+body {
+    font-family: Arial, sans-serif;
+ 
+    background-image: url("https://static.vecteezy.com/system/resources/previews/006/685/039/non_2x/pharmacy-shelves-with-medical-medicines-cartoon-illustration-vector.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    text-align: left;
+}
+
+.label {
+    margin-top: 10px;
+    color: #555;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button a:hover {
+    background-color: #0056b3;
+}

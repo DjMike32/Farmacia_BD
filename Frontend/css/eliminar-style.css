@@ -1,0 +1,30 @@
+/* Estilos específicos para la página de Eliminar Cliente */
+.content {
+    text-align: center;
+    padding: 20px;
+}
+
+.back-button {
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-form label,
+.search-form input,
+.search-form button {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+}
+
+.clientes-list {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}

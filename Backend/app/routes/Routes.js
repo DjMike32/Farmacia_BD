@@ -21,6 +21,23 @@ router.get('/consultar-Pais', async (req, res) => {
   }
 });
 
+router.get('/consultar-Empleados', async (req, res) => {
+  try {
+    console.log('Intentando conectar a Oracle...');
+    const connection = await oracledb.getConnection();
+    console.log('Conexión a Oracle exitosa');
+    
+    const result = await connection.execute('SELECT * FROM Empleados');
+    connection.close();
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al realizar la consulta:', error);
+    res.status(500).json({ error: 'Error al realizar la consulta' });
+  }
+});
+
+
 module.exports = router;
 
 

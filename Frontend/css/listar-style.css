@@ -1,0 +1,53 @@
+/* Estilos para la página de Listar Clientes */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.clientes-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.clientes-table th,
+.clientes-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.clientes-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.back-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-button a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.back-button a:hover {
+    background-color: #0056b3;
+}

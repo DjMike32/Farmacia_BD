@@ -16,6 +16,7 @@ app.use((req, res, next) => {
 
 // Rutas
 app.use('/', Routes); 
+app.use(express.static("Frontend"));
 
 const dbConfig = {
   user: 'Michael',
@@ -37,6 +38,7 @@ connectToOracle();
 app.listen(PORT, () => {
   console.log(`Servidor Express iniciado en el puerto ${PORT}`);
 });
+
 
 
 
