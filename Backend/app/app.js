@@ -20,7 +20,7 @@ app.use(express.static("Frontend"));
 app.use(express.json());
 
 const dbConfig = {
-  user: 'system',
+  user: 'Michael',
   password: 'admin',
   connectString: 'localhost:1521/xe'
 };
