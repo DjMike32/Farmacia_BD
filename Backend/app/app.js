@@ -17,9 +17,10 @@ app.use((req, res, next) => {
 // Rutas
 app.use('/', Routes); 
 app.use(express.static("Frontend"));
+app.use(express.json());
 
 const dbConfig = {
-  user: 'Michael',
+  user: 'system',
   password: 'admin',
   connectString: 'localhost:1521/xe'
 };

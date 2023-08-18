@@ -1,3 +1,4 @@
+
 // let Usuarios = {}
 // let Medicamentos ={}
 
@@ -18,30 +19,50 @@
 // cargarUsuarios();
 // cargarMedicamentos();
 
-const axios = require('axios');
-
-// Función para cargar usuarios usando axios
 const cargarUsuarios = async () => {
   try {
-    const respuesta = await axios.get('/consultar-Empleados');
-    const Usuarios = respuesta.data;
-    console.log(Usuarios);
+    const respuesta = await fetch('/consultar-Empleados');
+    const usuarios = await respuesta.json();
+    console.log(usuarios);
   } catch (error) {
     console.error('Error al cargar usuarios:', error);
   }
 };
 
-// Función para cargar medicamentos usando axios
-const cargarMedicamentos = async () => {
+
+cargarUsuarios();
+
+
+// Llamado a fetch para crear un empleado
+const crearEmpleado = async (Usuario, Password, Salario) => {
   try {
-    const respuesta = await axios.get('/consultar-Medicamentos');
-    const medicamentos = respuesta.data;
-    console.log(medicamentos);
+    const respuesta = await fetch('/crear-Empleado', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({Usuario, Password, Salario })
+    });
+
+    const resultado = await respuesta.json();
+
+    if (respuesta.ok) {
+      console.log(resultado.mensaje); // Empleado creado exitosamente
+      // Actualizar la lista de usuarios después de la creación exitosa
+      cargarUsuarios();
+    } else {
+      console.error(resultado.error); // Error al crear empleado
+    }
   } catch (error) {
-    console.error('Error al cargar medicamentos:', error);
+    console.error('Error al crear empleado:', error);
   }
 };
 
-// Llamar a las funciones para cargar usuarios y medicamentos
-cargarUsuarios();
-// cargarMedicamentos();
+
+
+
+
+
+
+
+
