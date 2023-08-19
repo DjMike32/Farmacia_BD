@@ -4,7 +4,7 @@ const Routes = require('./routes/Routes');
 const oracledb = require('oracledb');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors()); // Habilitar CORS para todas las rutas
 

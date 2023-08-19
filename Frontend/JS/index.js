@@ -30,7 +30,24 @@ const cargarUsuarios = async () => {
 };
 
 
-cargarUsuarios();
+
+
+const IniciarSesion = async () => {
+  try {
+    /** Obteniene datos para ingresas */
+    let user = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    
+    const respuesta = await fetch('/consultar-Usuario/:usuario');
+    const usuarios = await respuesta.json();
+    console.log( user, password);
+  } catch (error) {
+    console.error('Error al cargar usuarios:', error);
+  }
+};
+
+
+//cargarUsuarios();
 
 
 // Llamado a fetch para crear un empleado

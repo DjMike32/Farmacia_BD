@@ -92,7 +92,7 @@ INSERT INTO Profesiones (ID_Profesion, Descripcion) VALUES (4, 'Profesor');
 INSERT INTO Profesiones (ID_Profesion, Descripcion) VALUES (5, 'Arquitecto');
 
 
-------------------------------- Creación de la tabla Profesiones -----------------------------------
+------------------------------- Creación de la tabla Persona -----------------------------------
 CREATE TABLE Persona (
     ID_Persona NUMBER PRIMARY KEY,
     P_Nombre VARCHAR2(45),
