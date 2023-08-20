@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nueva Factura - Proyecto Farmacias</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Tus estilos CSS aquí */
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="profile-bar">
+            <a href="perfil.html" class="profile-button" id="profileBtn"><i class="fas fa-user"></i></a>
+            <a href="../html/login.html" class="profile-button" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> </a>
+        </div>
+        <div class="crear-factura">
+            <h2>Crear Nueva Factura</h2>
+            <form class="crear-form">
+                <label for="idFactura">ID de Factura:</label>
+                <input type="text" id="idFactura" name="idFactura" required><br><br>
+
+                <label for="fechaEmision">Fecha de Emisión:</label>
+                <input type="date" id="fechaEmision" name="fechaEmision" required><br><br>
+
+                <label for="impuesto">Impuesto:</label>
+                <input type="number" id="impuesto" name="impuesto" required><br><br>
+
+                <label for="cai">CAI:</label>
+                <input type="text" id="cai" name="cai" required><br><br>
+
+                <label for="total">Total:</label>
+                <input type="number" id="total" name="total" step="0.01" required><br><br>
+
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion" required><br><br>
+
+                <button type="submit"><i class="fas fa-plus"></i> Crear Factura</button>
+            </form>
+        </div>
+        <div class="back-button">
+            <a href="../html/admFactura.html"><i class="fas fa-chevron-left" style="color: white;"></i> Volver a Facturas</a>
+        </div>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+</html>

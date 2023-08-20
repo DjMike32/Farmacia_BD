@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleados- Proyecto Farmacias</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Agrega el archivo de estilos CSS específicos de esta página -->
+    <style>
+        /* Estilos para todos los botones en la página */
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .button i {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos específicos para el botón "Volver Atrás" */
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="profile-bar">
+            <a href="../html/perfilAdministrador.html" class="profile-button" id="profileBtn"><i class="fas fa-user"></i></a>
+            <a href="../html/login.html" class="profile-button" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> </a>
+        </div>
+        PEDIDOS
+        <div class="menu-options" id="menuOptions">
+            <table>
+                <tr>
+                    <td><a class="button" id="listButton" href="../html/listarPedidos.html"><i class="fas fa-list"></i> Listar</a></td>
+                    <td><a class="button" id="addButton" href="../html/agregarPedidos.html"><i class="fas fa-plus"></i> Agregar</a></td>
+                </tr>
+                <tr>
+                    <td><a class="button" id="editButton" href="../html/actualizarPedidos.html"><i class="fas fa-edit"></i> Actualizar</a></td>
+                    <td><a class="button" id="deleteButton" href="../html/eliminarPedido.html"><i class="fas fa-trash"></i> Eliminar</a></td>
+                </tr>
+            </table>
+        </div>
+        <a class="button back-button" href="../html/admiMenu.html"><i class="fas fa-arrow-left"></i> Volver Atrás</a>
+    </div>
+    <script src="../js/script.js"></script>
+    <script src="script.js"></script> <!-- Agrega el archivo de scripts JS específicos de esta página -->
+</body>
+</html>

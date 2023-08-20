@@ -3,60 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FARMACIA IS - Iniciar Sesión</title>
-    <link rel="stylesheet" href="css/login-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="imag/logos/pharmacy.ico"> 
+    <title>FARMACIA IS</title>
+    <link rel="stylesheet" href="css/index-style.css"> 
+    <link rel="icon" href="./imag/logos/pharmacy.ico"> 
+    <style>
+        /* ... (head styles) ... */
+
+        .blue-box {
+            background-color: #00A4BD;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .fondos {
+            background-image: url("imag/fondos/rebaja_precios_medicamentos.jpg__1440x2000_q70_subsampling-2.jpg");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            text-align: center;
+            padding: 20vh;
+            color: #1e1c1c;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="icon-mortar">
-            <i class="fas fa-mortar-pestle fa-3x"></i>
+    <header>
+        <h1>FARMACIA IS</h1>
+        <nav>
+            <ul>
+                    <li><a href="html/login.html" class="log-button"><img  src="./imag/iconos/perfil-del-usuario.png" alt="log-button">Iniciar seccion</a></li>
+                    <li><a href="" class="car-button" ><img src="./imag/iconos/carrito-de-compras.png" alt="car-button"></a></li>
+                    <div class="dropdown">
+                        <li class="prod-button">
+                        <a href="#"><img src="./imag/iconos/medicamento.png" alt="car-button">Productos</a>
+                        <div class="dropdown-content">
+                        <a href="./html/listarMedicamentos.html">Medicamentos</a>
+                        <a href="./html/listarVitaminas.html">Vitaminas</a>
+                       <!-- <a href="https://www.youtube.com/user/hubspot">YouTube</a> -->
+                        </div>
+                        </li>
+                      </div>
+            </ul>
+        </nav>
+    </header>
+    <section class="fondos">
+        <div class="blue-box">
+            <h1>Bienvenido a Farmacia IS</h1>
+            <p>Tu lugar confiable para obtener medicamentos y productos de salud.</p>
         </div>
-        <h1>Iniciar Sesión</h1>
-        <form>
-            <label for="username">Usuario</label>
-            <div class="input-container">
-                
-                <input type="text" id="username" name="username" placeholder="Usuario" required>
-            </div>
-            <label class="label" for="password">Contraseña</label>
-            <div class="input-container">
-                
-                <input type="password" id="password" name="password" placeholder="Contraseña" required>
-            </div>
-            <div class="button-container">
-                <button type="button" onclick="IniciarSesion()" >Acceder</button>
-            </div>
-            <div class="back-button">
-                <a href="../index.html" ><i class="fas fa-chevron-left"></i>Cancelar</a>
-            </div>
-        </form>
-    </div>
+    </section>
 
+    <section>
+        <div class="blue-box">
+            <h2>Sobre Nosotros</h2>
+            <p>Somos una farmacia comprometida con la salud y el bienestar de nuestros clientes...</p>
+        </div>
+    </section>
 
+    <section>
+        <div class="blue-box">
+            <h2>Contacto</h2>
+            <p>Si tienes preguntas o necesitas ayuda, no dudes en ponerte en contacto con nosotros...</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 FARMACIA IS. Todos los derechos reservados.</p>
+    </footer>
 </body>
-<style>
-    .back-button {
-        margin-top: 20px;
-        text-align: center;
-    }
-    
-    .back-button a {
-        display: inline-block;
-        background-color: #007bff;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: background-color 0.3s ease-in-out;
-    }
-    
-    .back-button a:hover {
-        background-color: #0056b3;
-    }
-
-</style>
-<script src="JS/index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>

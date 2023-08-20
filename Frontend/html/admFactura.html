@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Facturas - Proyecto Farmacias</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="../imag/logos/pharmacy.ico"> 
+</head>
+<body>
+    <div class="content">
+        <div class="profile-bar">
+            <a href="../html/perfilAdministrador.html" class="profile-button" id="profileBtn"><i class="fas fa-user"></i></a>
+            <a href="../html/login.html" class="profile-button" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> </a>
+        </div>
+        <div class="menu-header">
+            <h2>MENU</h2>
+        </div>
+        <div class="menu-options" id="menuOptions">
+
+            <div class="menu-section crear-factura">
+                <h2>Crear Nueva Factura</h2>
+                <a href="../html/crearFactura.html" class="menu-button"><i class="fas fa-plus"></i> Crear Factura</a>
+            </div>
+
+            <div class="menu-section listar-facturas">
+                <h2>Listado de Facturas</h2>
+                <a href="../html/listarFactura.html" class="menu-button"><i class="fas fa-list"></i> Listar Facturas</a>
+            </div>
+
+            <div class="menu-section eliminar-factura">
+                <h2>Eliminar Factura</h2>
+                <a href="../html/eliminarFactura.html" class="menu-button"><i class="fas fa-trash"></i> Eliminar Factura</a>
+            </div>
+        </div>
+        <a href="./admiMenu.html" class="back-button"><i class="fas fa-chevron-left"></i> Volver Atrás</a>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+<style>
+    .back-button {
+        background-color: #3498db;
+        border-radius: 50px;
+        color: aliceblue;
+        width:  150px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+    .menu-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-section {
+        text-align: center;
+        margin-bottom: 20px;
+        flex-direction: column;
+    }
+</style>
+</html>

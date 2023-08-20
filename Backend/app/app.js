@@ -5,7 +5,7 @@ const oracledb = require('oracledb');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3001;
-
+const bodyParser = require("body-parser"); Routes.use(bodyParser.json());
 app.use(cors()); // Habilitar CORS para todas las rutas
 
 // Middleware para registrar solicitudes en la consola
@@ -40,6 +40,41 @@ app.listen(PORT, () => {
   console.log(`Servidor Express iniciado en el puerto ${PORT}`);
 });
 
+
+// app.post('/cliente/crearCliente', async (req, res) => {
+//   try {
+//     const {
+//       ID_Empleado,
+//       Usuario,
+//       Password,
+//       Salario
+//     } = req.body;
+//     console.log(req.body);
+//     const connection = await oracledb.getConnection(dbConfig);
+
+//     const result = await connection.execute(
+//       `
+//       INSERT INTO Empleados (ID_Empleado, USUARIO, PASSWORD, SALARIO) VALUES (:ID_Empleado, :Usuario, :Password, :Salario)
+//       `,
+//       {
+//         ID_Empleado,
+//         Usuario,
+//         Password,
+//         Salario
+//       },
+//       {
+//         autoCommit: true
+//       }
+//     );
+
+//     await connection.close();
+
+//     res.json({ message: 'Cliente creado exitosamente.' });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Error al crear el cliente.' });
+//   }
+// });
 
 
 

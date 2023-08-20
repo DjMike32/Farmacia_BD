@@ -5,13 +5,23 @@ const router = express.Router();
 const oracledb = require('oracledb');
 const app = express();
 app.use(express.json());
+const bodyParser = require("body-parser"); router.use(bodyParser.json());
+app.use((req, res, next) => {
+  console.log(`Solicitud a: ${req.method} ${req.url}`);
+  next(); 
+});
+
+// Rutas
+app.use('/', router); 
+app.use(express.static("Frontend"));
+app.use(express.json());
 
 
 module.exports = router;
 
 
 const dbConfig = {
-  user: 'ADMIN',
+  user: 'Michael',
   password: 'admin',
   connectString: 'localhost:1521/xe'
 };
@@ -35,6 +45,8 @@ router.get('/consultar-Empleados', async (req, res) => {
     res.status(500).json({ error: 'Error al realizar la consulta' });
   }
 });
+
+
 
 router.post('/consultar-Usuario/:usuario', async (req, res) => {
   try {
@@ -62,23 +74,27 @@ router.post('/consultar-Usuario/:usuario', async (req, res) => {
 app.post('/cliente/crearCliente', async (req, res) => {
   try {
     const {
-      ID_Empleado,
-      Usuario,
-      Password,
-      Salario
+      // ID_Empleado,
+      // Usuario,
+      // Password,
+      // Salario
+      Descripcion,
+      Color
     } = req.body;
     console.log(req.body);
     const connection = await oracledb.getConnection(dbConfig);
 
     const result = await connection.execute(
       `
-      INSERT INTO Empleados (ID_Empleado, USUARIO, PASSWORD, SALARIO) VALUES (:ID_Empleado, :Usuario, :Password, :Salario)
+      INSERT INTO Pais (Descripcion, Color) VALUES (:Descripcion, :Color)
       `,
       {
-        ID_Empleado,
-        Usuario,
-        Password,
-        Salario
+        // ID_Empleado,
+        // Usuario,
+        // Password,
+        // Salario
+        Descripcion,
+        Color
       },
       {
         autoCommit: true
@@ -126,6 +142,63 @@ app.delete('/cliente/eliminarCliente/:ID_Empleado', async (req, res) => {
 });
 
 
+
+
+// router.post('/login', async (req, res) => {
+//   try {
+//     const { Descripcion, Color } = req.body;
+
+//     // Realizar una consulta a la base de datos para verificar las credenciales
+//     const connection = await oracledb.getConnection(dbConfig);
+//     const result = await connection.execute(
+//       'SELECT COUNT(*) AS count FROM Pais WHERE Descripcion =:Descripcion AND Color =:Color',
+//       [Descripcion, Color]
+//     );
+//     connection.close();
+
+//     const count = result.rows[0].COUNT;
+//     if (count > 0) {
+//       res.json({ success: true });
+//     } else {
+//       res.json({ success: false });
+//     }
+//   } catch (error) {
+//     console.error('Error en inicio de sesión:', error);
+//     res.status(500).json({ success: false });
+//   }
+// });
+
+router.post('/login', async (req, res) => {
+  try {
+    const { Descripcion, Color } = req.body;
+
+    // Realizar una consulta a la base de datos para verificar las credenciales
+    const connection = await oracledb.getConnection(dbConfig);
+    const result = await connection.execute(
+      'SELECT * FROM Pais WHERE Descripcion = :Descripcion AND Color = :Color',
+      [Descripcion, Color]
+    );
+    connection.close();
+
+    if (result.rows.length > 0) {
+      res.json({ success: true });
+    } else {
+      res.json({ success: false });
+    }
+  } catch (error) {
+    console.error('Error en inicio de sesión:', error);
+    res.status(500).json({ success: false });
+  }
+});
+
+
+
+
+
+
+
+
+module.exports = router;
 
 app.listen(3000, () => console.log('Server started on port 3000'));
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Ordenes de Pedido - Proyecto Farmacias</title>
+    <link rel="stylesheet" href="../css/listar-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="content">
+        <h1> Eliminar Pedido</h1>
+
+        <form class="search-form">
+            <label for="idOrdenPedido">Buscar por ID de Orden de Pedido:</label>
+            <input type="text" id="idOrdenPedido" name="idOrdenPedido" required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <table class="clientes-table">
+            <thead>
+                <tr>
+                    <th>ID Orden Pedido</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>ID Empleado</th>
+                    <th>ID Cliente</th>
+                    <th>ID Factura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se cargarán dinámicamente los datos de las órdenes de pedido -->
+            </tbody>
+        </table>
+        <div class="back-button">
+            <a><i class="fas fa-chevron-left"></i>Eliminar</a>
+        </div>
+        <div class="back-button">
+            <a href="../html/admiPedidos.html"><i class="fas fa-chevron-left"></i> Volver a Órdenes de Pedidos</a>
+        </div>
+    </div>
+    <script>
+        // Aquí iría el código JavaScript necesario para cargar los datos de las órdenes de pedido en la tabla
+    </script>
+</body>
+</html>

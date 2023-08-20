@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Productos - Proyecto Farmacias</title>
+    <link rel="stylesheet" href="../css/listar-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="content">
+        <h1>Listado de Productos</h1>
+
+        <form class="search-form">
+            <label for="idProducto">Buscar por ID de Producto:</label>
+            <input type="text" id="idProducto" name="idProducto" required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <table class="clientes-table">
+            <thead>
+                <tr>
+                    <th>ID Producto</th>
+                    <th>Descripción</th>
+                    <th>Nombre Producto</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Fecha de Elaboración</th>
+                    <th>Prohibiciones</th>
+                    <th>Existencias</th>
+                    <th>ID Droguería</th>
+                    <th>Nombre Medicamento</th>
+                    <th>Número de Lote</th>
+                    <th>ID Tipo Medicamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se cargarán dinámicamente los datos de los productos -->
+            </tbody>
+        </table>
+
+        <div class="back-button">
+            <a href="../html/admMedicamentos.html"><i class="fas fa-chevron-left"></i> Volver a Menu Medicamentos</a>
+        </div>
+    </div>
+    <script>
+        // Aquí iría el código JavaScript proporcionado en respuestas anteriores
+    </script>
+</body>
+</html>
