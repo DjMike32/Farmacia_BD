@@ -29,7 +29,12 @@ h1 {
 }
 
 .clientes-table th {
-    background-color: #007bff;
+    background-color: #2259aa;
+    color: white;
+}
+
+.clientes-tabla-insert {
+    background-color: #e4431b;
     color: white;
 }
 
