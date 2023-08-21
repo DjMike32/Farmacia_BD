@@ -9,6 +9,54 @@ const cargarUsuarios = async () => {
   }
 };
 
+// Medicamentos = [];
+
+cargarUsuarios();
+
+// const cargarMedicamentos = async () => {
+//   try {
+//     const respuesta = await fetch('/consultar-medicamento');
+//     const medicamentos = await respuesta.json();
+//     console.log(medicamentos);
+//   } catch (error) {
+//     console.error('Error al cargar usuarios:', error);
+//   }
+// };
+
+// cargarMedicamentos();
+
+const cargarMedicamentos = async () => {
+  try {
+    const respuesta = await fetch('/consultar-medicamento');
+    const medicamentos = await respuesta.json();
+    
+    // Aquí asignamos los datos obtenidos al arreglo de objetos JSON
+    const arregloDeMedicamentos = medicamentos;
+
+    // Ahora puedes trabajar con el arreglo de objetos JSON como necesites
+    console.log(arregloDeMedicamentos);
+  } catch (error) {
+    console.error('Error al cargar medicamentos:', error);
+  }
+};
+
+
+cargarMedicamentos();
+
+
+const medicamentos = [
+  { ID_Medicamento: 1, Nombre_Medicamento: 'Medicamento A', Existencias: 100 },
+  { ID_Medicamento: 2, Nombre_Medicamento: 'Medicamento B', Existencias: 50 },
+  { ID_Medicamento: 3, Nombre_Medicamento: 'Medicamento C', Existencias: 200 }
+];
+
+
+
+
+
+
+
+
 
 
 // Llamado a fetch para crear un empleado
@@ -105,37 +153,37 @@ const crearEmpleado = async (Usuario, Password, Salario) => {
 
 
 
-// document.getElementById('loginForm').addEventListener('submit', function(event) {
-//   event.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-//   const Descripcion = document.getElementById('usuario').value;
-//   const Color = document.getElementById('password').value;
+  const usuario = document.getElementById('usuario').value;
+  const password = document.getElementById('password').value;
 
-//   const credenciales = {
-//     Descripcion: Descripcion,
-//     Color: Color 
-//   };
+  const credenciales = {
+    usuario: usuario,
+    password: password 
+  };
 
-//   fetch('/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credenciales)
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       if (data.success) {
-//         alert('Inicio de sesión exitoso');
-//       } else {
-//         alert('Credenciales incorrectas');
-//       }
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//       alert('Error al iniciar sesión');
-//     });
-// });
+  fetch('/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credenciales)
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Inicio de sesión exitoso');
+      } else {
+        alert('Credenciales incorrectas');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error al iniciar sesión');
+    });
+});
 
 // document.getElementById('loginForm').addEventListener('submit', function(event) {
 //   event.preventDefault();
@@ -219,7 +267,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
 
     // Arreglo para almacenar los datos de medicamentos
-    var medicamentos = [];
+    // var medicamentos = [];
 
     // Función para obtener los datos de la base de datos
     async function obtenerDatosMedicamentos() {
