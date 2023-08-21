@@ -359,6 +359,111 @@ router.get('/llamar-pa3/:nombre_patron', async (req, res) => {
 });
 
 
+router.get('/obtener-todos-medicamentos', async (req, res) => {
+  try {
+    console.log('Intentando conectar a Oracle...');
+    const connection = await oracledb.getConnection(dbConfig);
+    console.log('Conexión a Oracle exitosa');
+
+    // Crear un bind variable para el cursor de salida
+    const bindVars = {
+      cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT }
+    };
+
+    const result = await connection.execute('BEGIN PA_ObtenerTodosLosMedicamentos(:cursor); END;', bindVars);
+
+    const cursor = result.outBinds.cursor;
+    const resultSet = await cursor.getRows(100); // Puedes ajustar el número de filas
+
+    cursor.close();
+    connection.close();
+
+    res.json({ success: true, message: 'Medicamentos obtenidos exitosamente', data: resultSet });
+  } catch (error) {
+    console.error('Error al obtener todos los medicamentos:', error);
+    res.status(500).json({ error: 'Error al obtener todos los medicamentos' });
+  }
+});
+
+
+
+router.delete('/eliminar-medicamento/:id', async (req, res) => {
+  const idMedicamento = req.params.id;
+
+  try {
+    const connection = await oracledb.getConnection(dbConfig);
+    const plsqlBlock = `
+      BEGIN
+        PA_EliminarMedicamento(p_id_medicamento => :idMedicamento);
+      END;
+    `;
+
+    await connection.execute(plsqlBlock, { idMedicamento });
+    connection.close();
+
+    res.json({ success: true, message: 'Medicamento eliminado exitosamente' });
+  } catch (error) {
+    console.error('Error al eliminar el medicamento:', error);
+    res.status(500).json({ error: 'Error al eliminar el medicamento' });
+  }
+});
+
+
+
+
+// Ruta con un PA para agregar medicamentos
+router.post('/agregar-medicamento', async (req, res) => {
+  try {
+    const {
+      nombre_medicamento,
+      no_lote,
+      id_producto_tm,
+      id_tipo_medicamento,
+      img,
+      precio,
+      existencias,
+      fecha_vencimiento,
+      fecha_laboracion
+    } = req.body;
+
+    const connection = await oracledb.getConnection(dbConfig);
+
+    const plsqlBlock = `
+    BEGIN
+      PA_AgregarMedicamento(
+        p_nombre_medicamento => :nombre_medicamento,
+        p_no_lote => :no_lote,
+        p_id_producto_tm => :id_producto_tm,
+        p_id_tipo_medicamento => :id_tipo_medicamento,
+        p_img => :img,
+        p_precio => :precio,
+        p_existencias => :existencias,
+        p_fecha_vencimiento => :fecha_vencimiento,
+        p_fecha_laboracion => :fecha_laboracion
+      );
+    END;
+    `;
+
+    await connection.execute(plsqlBlock, {
+      nombre_medicamento,
+      no_lote,
+      id_producto_tm,
+      id_tipo_medicamento,
+      img,
+      precio,
+      existencias,
+      fecha_vencimiento,
+      fecha_laboracion
+    });
+
+    connection.close();
+
+    res.json({ success: true, message: 'Medicamento agregado exitosamente' });
+  } catch (error) {
+    console.error('Error al agregar medicamento:', error);
+    res.status(500).json({ error: 'Error al agregar medicamento' });
+  }
+});
 
 
 

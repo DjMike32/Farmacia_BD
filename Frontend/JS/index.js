@@ -13,17 +13,52 @@ const cargarUsuarios = async () => {
 
 cargarUsuarios();
 
-// const cargarMedicamentos = async () => {
-//   try {
-//     const respuesta = await fetch('/consultar-medicamento');
-//     const medicamentos = await respuesta.json();
-//     console.log(medicamentos);
-//   } catch (error) {
-//     console.error('Error al cargar usuarios:', error);
-//   }
-// };
 
-// cargarMedicamentos();
+document.addEventListener('DOMContentLoaded', () => {
+  const btnAbrirModal = document.getElementById('btnAbrirModal');
+  const modalAgregarMedicamento = document.getElementById('modalAgregarMedicamento');
+  const agregarMedicamentoForm = document.getElementById('agregarMedicamentoForm');
+
+  // Abrir la ventana modal al hacer clic en el botón
+  btnAbrirModal.addEventListener('click', () => {
+    modalAgregarMedicamento.style.display = 'block';
+  });
+
+  // Cerrar la ventana modal al hacer clic en la "x"
+  modalAgregarMedicamento.querySelector('.modal-close').addEventListener('click', () => {
+    modalAgregarMedicamento.style.display = 'none';
+  });
+
+  // Enviar datos del formulario al servidor
+  agregarMedicamentoForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(agregarMedicamentoForm);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('http://localhost:3001/agregar-medicamento', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        console.log('Medicamento agregado exitosamente');
+        modalAgregarMedicamento.style.display = 'none'; // Cerrar la ventana modal
+        // Aquí podrías agregar código para actualizar la tabla
+      } else {
+        console.error('Error al agregar el medicamento');
+      }
+    } catch (error) {
+      console.error('Error al agregar el medicamento:', error);
+    }
+  });
+});
+
+
 
 const cargarMedicamentos = async () => {
   try {
@@ -44,11 +79,6 @@ const cargarMedicamentos = async () => {
 cargarMedicamentos();
 
 
-const medicamentos = [
-  { ID_Medicamento: 1, Nombre_Medicamento: 'Medicamento A', Existencias: 100 },
-  { ID_Medicamento: 2, Nombre_Medicamento: 'Medicamento B', Existencias: 50 },
-  { ID_Medicamento: 3, Nombre_Medicamento: 'Medicamento C', Existencias: 200 }
-];
 
 
 
@@ -56,169 +86,111 @@ const medicamentos = [
 
 
 
-
-
-
-// Llamado a fetch para crear un empleado
-const crearEmpleado = async (Usuario, Password, Salario) => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const tablaMedicamentos = document.getElementById('tablaMedicamentos');
+  
   try {
-    const respuesta = await fetch('/crear-Empleado', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({Usuario, Password, Salario })
-    });
+    const response = await fetch('http://localhost:3001/obtener-todos-medicamentos'); // Cambia la URL si es diferente
+    
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data); // Verifica la estructura de los datos aquí
+      
+      const tbody = tablaMedicamentos.querySelector('tbody');
+      
+      // Limpiar el contenido actual de la tabla
+      tbody.innerHTML = '';
 
-    const resultado = await respuesta.json();
+      data.data.forEach(medicamento => {
+        const row = document.createElement('tr');
+        row.setAttribute('data-id', medicamento[0]);
 
-    if (respuesta.ok) {
-      console.log(resultado.mensaje); // Empleado creado exitosamente
-      // Actualizar la lista de usuarios después de la creación exitosa
-      cargarUsuarios();
+        // Recorrer los valores del arreglo y crear las celdas
+        medicamento.forEach((valor, index) => {
+          const cell = document.createElement('td');
+          if (index === 8 || index === 9) { // Índices correspondientes a las fechas
+            // Formatear las fechas antes de asignarlas a la celda
+            const formattedDate = new Date(valor).toLocaleDateString('es-ES');
+            cell.textContent = formattedDate;
+          } else {
+            cell.textContent = valor;
+          }
+          row.appendChild(cell);
+        });
+
+        // Agregar la celda del botón de eliminar
+        const eliminarCell = document.createElement('td');
+        const eliminarBtn = document.createElement('button');
+        eliminarBtn.textContent = 'Eliminar';
+        eliminarBtn.classList.add('eliminar-btn');
+        eliminarCell.appendChild(eliminarBtn);
+        row.appendChild(eliminarCell);
+
+        tbody.appendChild(row);
+      });
     } else {
-      console.error(resultado.error); // Error al crear empleado
+      console.error('Error al obtener los medicamentos');
     }
   } catch (error) {
-    console.error('Error al crear empleado:', error);
+    console.error('Error al cargar medicamentos:', error);
   }
-};
-
-// document.getElementById('crearEmpleadoForm').addEventListener('submit', function(event) {
-//   event.preventDefault();
-
-//   const idEmpleado = document.getElementById('idEmpleado').value;
-//   const usuario = document.getElementById('usuario').value;
-//   const password = document.getElementById('password').value;
-//   const salario = document.getElementById('salario').value;
-
-//   const nuevoEmpleado = {
-//     ID_Empleado: idEmpleado,
-//     Usuario: usuario,
-//     Password: password,
-//     Salario: salario
-//   };
-
-//   axios.post('/cliente/crearCliente', nuevoEmpleado)
-//     .then(response => {
-//       console.log(response.data);
-//       alert('Empleado creado exitosamente');
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//       alert('Error al crear el empleado');
-//     });
-// });
-
-
-// document.getElementById('crearEmpleadoFormulario').addEventListener('submit', function(event) {
-//   event.preventDefault();
-
-//   // const idEmpleado = document.getElementById('idEmpleado').value;
-//   // const usuario = document.getElementById('usuario').value;
-//   // const password = document.getElementById('password').value;
-//   // const salario = document.getElementById('salario').value;
-
-//   const Descripcion = document.getElementById('usuario').value;
-//   const Color = document.getElementById('password').value;
- 
-
-
-//   const nuevoEmpleado = {
-//     // ID_Empleado: idEmpleado,
-//     // Usuario: usuario,
-//     // Password: password,
-//     // Salario: salario
-//     Descripcion: Descripcion,
-//     Color: Color 
-//   };
-
-//   fetch('/cliente/crearCliente', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(nuevoEmpleado)
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log(data);
-//       alert('Empleado creado exitosamente');
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//       alert('Error al crear el empleado');
-//     });
-// });
-
-
-
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const usuario = document.getElementById('usuario').value;
-  const password = document.getElementById('password').value;
-
-  const credenciales = {
-    usuario: usuario,
-    password: password 
-  };
-
-  fetch('/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credenciales)
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert('Inicio de sesión exitoso');
-      } else {
-        alert('Credenciales incorrectas');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Error al iniciar sesión');
-    });
 });
 
-// document.getElementById('loginForm').addEventListener('submit', function(event) {
-//   event.preventDefault();
 
-//   const Usuario = document.getElementById('usuario').value;
-//   const Password = document.getElementById('password').value;
 
-//   console.log('Usuario:', Usuario);
-//   console.log('Password:', Password);
-
-//   const credenciales = {
-//     Usuario: Usuario,
-//     Password: Password 
-//   };
-
-//   fetch('/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(credenciales)
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       if (data.success) {
-//         alert('Inicio de sesión exitoso');
-//       } else {
-//         alert('Credenciales incorrectas');
-//       }
-//     })
-//     .catch(error => {
-//       console.error('Error:', error);
-//       alert('Error al iniciar sesión');
+// document.addEventListener('DOMContentLoaded', () => {
+//   const modalAgregarMedicamento = document.getElementById('modalAgregarMedicamento');
+//   const btnAbrirModal = document.getElementById('btnAbrirModal');
+//   const btnCerrarModal = modalAgregarMedicamento.querySelector('.modal-close');
+  
+//   const agregarMedicamentoForm = document.getElementById('agregarMedicamentoForm');
+  
+//   btnAbrirModal.addEventListener('click', () => {
+//     modalAgregarMedicamento.style.display = 'flex';
+//   });
+  
+//   btnCerrarModal.addEventListener('click', () => {
+//     modalAgregarMedicamento.style.display = 'none';
+//   });
+  
+//   agregarMedicamentoForm.addEventListener('submit', async (event) => {
+//     event.preventDefault();
+    
+//     const formData = new FormData(agregarMedicamentoForm);
+//     const data = {};
+    
+//     formData.forEach((value, key) => {
+//       data[key] = value;
 //     });
+
+//     console.log(formData);
+    
+//     try {
+//       const response = await fetch('/agregar-medicamento', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(data)
+//       });
+      
+//       if (response.ok) {
+//         console.log('Medicamento agregado exitosamente');
+//         // Cerrar la ventana modal
+//         modalAgregarMedicamento.style.display = 'none';
+//         // Actualizar la tabla de medicamentos (puede ser recargando la página o actualizando la tabla con JavaScript)
+//       } else {
+//         console.error('Error al agregar el medicamento');
+//       }
+//     } catch (error) {
+//       console.error('Error al agregar el medicamento:', error);
+//     }
+//   });
 // });
+
+
+
+
 
 function redireccionar() {
   // Redirige al usuario a la página de destino
@@ -229,82 +201,11 @@ function redireccionar() {
 }
 
 
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const usuario = document.getElementById('usuario').value;
-  const password = document.getElementById('password').value;
-
-  const credenciales = {
-    usuario: usuario,
-    password: password
-  };
-
-    console.log('Usuario:', usuario);
-  console.log('Password:', password);
-
-  fetch('/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credenciales)
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert('Inicio de sesión exitoso');
-      } else {
-        alert('Credenciales incorrectas');
-      }
-    })
-    .catch(error => {
-      // console.error('Error:', error);
-      // alert('Error al iniciar sesión');
-    });
-    redireccionar();
-});
 
 
-    // Arreglo para almacenar los datos de medicamentos
-    // var medicamentos = [];
 
-    // Función para obtener los datos de la base de datos
-    async function obtenerDatosMedicamentos() {
-        try {
-            const response = await fetch('/medicamento'); // Reemplaza con la ruta correcta
-            const data = await response.json();
-            medicamentos = data;
-            generarFilasTabla();
-        } catch (error) {
-            console.error('Error al obtener los datos:', error);
-        }
-    }
 
-    // Llamada a la función para obtener los datos
-    obtenerDatosMedicamentos();
-
-    // Función para generar las filas de la tabla con los datos obtenidos
-    // function generarFilasTabla() {
-    //     var tabla = document.getElementById("tabla-medicamentos");
-
-    //     medicamentos.forEach(function(medicamento) {
-    //         var fila = tabla.insertRow();
-
-    //         fila.insertCell().textContent = medicamento.ID_Medicamentos;
-    //         fila.insertCell().textContent = medicamento.Descripcion;
-    //         fila.insertCell().textContent = medicamento.Nombre_Medicamento;
-    //         fila.insertCell().textContent = medicamento.Fecha_Vencimiento;
-    //         fila.insertCell().textContent = medicamento.Fecha_Laboracion;
-    //         fila.insertCell().textContent = medicamento.Prohibiciones;
-    //         fila.insertCell().textContent = medicamento.Existencias;
-    //         fila.insertCell().textContent = medicamento.ID_Drogueria;
-    //         fila.insertCell().textContent = medicamento.Nombre_Medicamento;
-    //         fila.insertCell().textContent = medicamento.No_Lote;
-    //         fila.insertCell().textContent = medicamento.ID_Tipo_Medicamento;
-    //     });
-    // }
-
+ 
 
 
 

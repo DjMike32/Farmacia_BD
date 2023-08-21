@@ -34,32 +34,32 @@
 
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await fetch('/consultar-Medicamento'); // Cambia la URL según tu configuración
-      const data = await response.json();
+// document.addEventListener('DOMContentLoaded', async () => {
+//     try {
+//       const response = await fetch('/consultar-Medicamento'); // Cambia la URL según tu configuración
+//       const data = await response.json();
       
-      const tableBody = document.getElementById('medicamentosTableBody');
+//       const tableBody = document.getElementById('medicamentosTableBody');
       
-      data.forEach(medicamento => {
-        const row = document.createElement('tr');
+//       data.forEach(medicamento => {
+//         const row = document.createElement('tr');
         
-        const idCell = document.createElement('td');
-        idCell.textContent = medicamento.ID_Medicamentos;
-        row.appendChild(idCell);
+//         const idCell = document.createElement('td');
+//         idCell.textContent = medicamento.ID_Medicamentos;
+//         row.appendChild(idCell);
         
-        const nombreCell = document.createElement('td');
-        nombreCell.textContent = medicamento.Nombre; // Cambia el nombre de la columna según tu tabla
-        row.appendChild(nombreCell);
+//         const nombreCell = document.createElement('td');
+//         nombreCell.textContent = medicamento.Nombre; // Cambia el nombre de la columna según tu tabla
+//         row.appendChild(nombreCell);
         
-        // Agrega más celdas para otras columnas
+//         // Agrega más celdas para otras columnas
         
-        tableBody.appendChild(row);
-      });
-    } catch (error) {
-      console.error('Error al obtener los datos:', error);
-    }
-  });
+//         tableBody.appendChild(row);
+//       });
+//     } catch (error) {
+//       console.error('Error al obtener los datos:', error);
+//     }
+//   });
 
 
 

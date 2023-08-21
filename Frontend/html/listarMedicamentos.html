@@ -18,132 +18,108 @@
             <button type="submit">Buscar</button>
         </form>
 
-        <table class="clientes-table">
-            <thead>
-                <tr>
-                    <th>Nombre_Medicamento</th>
-                    <th>Número_Lote</th>
-                    <th>ID_Producto</th>
-                    <th>ID_Tipo_Medicamento</th>
-                    <th>Precio</th>
-                    <th>Existencias</th>
-                    <th>Fecha_Vencimiento</th>
-                    <th>Fecha_Elaboración</th>
-                    <th>Imagen</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" id="nombreMedicamento" placeholder="Nombre"></td>
-                    <td><input type="text" id="numeroLote" placeholder="Lote"></td>
-                    <td><input type="text" id="idProducto" placeholder="ID Producto"></td>
-                    <td><input type="text" id="idTipoMedicamento" placeholder="ID Tipo Medicamento"></td>
-                    <td><input type="text" id="precio" placeholder="Precio"></td>
-                    <td><input type="text" id="existencias" placeholder="Existencias"></td>
-                    <td><input type="text" id="fechaVencimiento" placeholder="Fecha Vencimiento"></td>
-                    <td><input type="text" id="fechaElaboracion" placeholder="Fecha Elaboración"></td>
-                    <td><input type="text" id="imagen" placeholder="Imagen"></td>
-                    <td><button id="agregarMedicamento" onclick="agregarMedicamento()">Agregar</button></td>
-                    
-                <td class="acciones">
-                        <button class="editar-button" onclick="editarMedicamento(this)">M</button>
-                </td>
-                <td class="acciones">
-                    <button class="eliminar-button" onclick="eliminarMedicamento(this)">X</button>
-            </td>
-                </tr>
-            </tbody>
 
-            <tfoot>
+        <div id="tablaMedicamentos">
+            <table class="clientes-table">
+              <thead>
                 <tr>
-                    <td><input type="text" id="nombreMedicamento" placeholder="Nombre"></td>
-                    <td><input type="text" id="numeroLote" placeholder="Lote"></td>
-                    <td><input type="text" id="idProducto" placeholder="ID Producto"></td>
-                    <td><input type="text" id="idTipoMedicamento" placeholder="ID Tipo Medicamento"></td>
-                    <td><input type="text" id="precio" placeholder="Precio"></td>
-                    <td><input type="text" id="existencias" placeholder="Existencias"></td>
-                    <td><input type="text" id="fechaVencimiento" placeholder="Fecha Vencimiento"></td>
-                    <td><input type="text" id="fechaElaboracion" placeholder="Fecha Elaboración"></td>
-                    <td><input type="text" id="imagen" placeholder="Imagen"></td>
-                    <td><button id="agregarMedicamento" onclick="agregarMedicamento()">Agregar</button></td>
-                    
-                <td class="acciones">
-                        <button class="editar-button" onclick="editarMedicamento(this)">M</button>
-                </td>
-                <td class="acciones">
-                    <button class="eliminar-button" onclick="eliminarMedicamento(this)">X</button>
-            </td>
+                  <th>ID Medicamento</th>
+                  <th>Nombre_Medicamento</th>
+                  <th>Número_Lote</th>
+                  <th>ID_Producto</th>
+                  <th>ID_Tipo_Medicamento</th>
+                  <th>Imagen</th>
+                  <th>Precio</th>
+                  <th>Existencias</th>
+                  <th>Fecha_Vencimiento</th>
+                  <th>Fecha_Elaboración</th>
+                  <th>Descripcion</th>
+                  <th> </th>
                 </tr>
-            </tfoot>
-        </table>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de medicamentos -->
+              </tbody>
+            </table>
+          </div>
+          
+
+
+        
+            
+                    
+                
+
+        
+                    
+             
 
         <div class="back-button">
             <a href="../html/admiMenu.html"><i class="fas fa-chevron-left"></i> Volver</a>
         </div>
     </div>
     <script>
-        function agregarMedicamento() {
-            var tableBody = document.querySelector(".clientes-table tbody");
-            var newRow = document.createElement("tr");
-            
-            // Crea las celdas con los valores ingresados en los inputs
-            var cells = ["nombreMedicamento",
-             "numeroLote", "idProducto", 
-             "idTipoMedicamento", "precio", 
-             "existencias", "fechaVencimiento", 
-             "fechaElaboracion", "imagen"];
-            cells.forEach(function(cellId) {
-                var cellValue = document.getElementById(cellId).value;
-                var cell = document.createElement("td");
-                cell.textContent = cellValue;
-                newRow.appendChild(cell);
-            });}
-    /**********************************************************************************/
-        function eliminarMedicamento(button) {
-            var row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row); 
-        }
 
-        var tabla = document.querySelector('.clientes-table tbody');
-        var botonEliminar = document.querySelector('.eliminar-button');
+document.addEventListener('DOMContentLoaded', async () => {
+  const tablaMedicamentos = document.getElementById('tablaMedicamentos');
+  
+  try {
+    const response = await fetch('/obtener-todos-medicamentos'); // Cambia la URL si es diferente
     
-        if (tabla.children.length === 0) {
-            botonEliminar.style.display = 'none';
-        }
-/**********************************************************************************/
-        //fncion pa modificar
-        function editarMedicamento(button) {
-            var row = button.parentNode.parentNode;
-            var cells = row.querySelectorAll('td');
-            
-            // Mostrar formulario
-            var form = document.createElement('form');
-            cells.forEach(function(cell, index) {
-                var input = document.createElement('input');
-                input.value = cell.textContent;
-                form.appendChild(input);
-            });
-            var saveButton = document.createElement('button');
-            saveButton.textContent = 'Guardar';
-            form.appendChild(saveButton);
-            row.parentNode.replaceChild(form, row);  // Reemplazar la fila 
-            
-            saveButton.addEventListener('click', function() {
-                var updatedCells = form.querySelectorAll('input');
-                updatedCells.forEach(function(updatedCell, index) {
-                    cells[index].textContent = updatedCell.value;
-                });
-                form.parentNode.replaceChild(row, form);
-            });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data); // Verifica la estructura de los datos aquí
+      
+      const tbody = tablaMedicamentos.querySelector('tbody');
+      
+      // Limpiar el contenido actual de la tabla
+      tbody.innerHTML = '';
 
-            var tableBody = document.querySelector(".clientes-table tbody");
+      // Recorrer los datos y crear las filas
+      data.data.forEach(medicamento => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${medicamento.ID_MEDICAMENTO}</td>
+          <td>${medicamento.NOMBRE_MEDICAMENTO}</td>
+          <td>${medicamento.NUMERO_LOTE}</td>
+          <td>${medicamento.ID_PRODUCTO}</td>
+          <td>${medicamento.ID_TIPO_MEDICAMENTO}</td>
+          <td>${medicamento.IMAGEN}</td>
+          <td>${medicamento.PRECIO}</td>
+          <td>${medicamento.EXISTENCIAS}</td>
+          <td>${medicamento.FECHA_VENCIMIENTO}</td>
+          <td>${medicamento.FECHA_ELABORACION}</td>
+          <td>${medicamento.DESCRIPCION}</td>
+          <td></td>
+        `;
+        
+        // Usar textContent para asignar texto de manera segura
+        row.querySelectorAll('td').forEach(cell => {
+          cell.textContent = cell.textContent;
+        });
 
-            if (tableBody.children.length === 0) {
-                var accionesHeader = document.querySelector(".clientes-table th.acciones");
-                accionesHeader.style.display = "none";
-            }
-        }
+        tbody.appendChild(row);
+      });
+    } else {
+      console.error('Error al obtener los medicamentos');
+    }
+  } catch (error) {
+    console.error('Error al cargar medicamentos:', error);
+  }
+});
+
+
+
+
+
+
+
+
+       
+
+     
+
+
     </script>
 </body>
 <style>
