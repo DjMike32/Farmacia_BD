@@ -80,6 +80,64 @@
     <footer>
         <p>&copy; 2023 FARMACIA IS. Todos los derechos reservados.</p>
     </footer>
+    <!-- <button id="llamarBtn">Llamar PA</button>
+<ul id="outputList"></ul> -->
+
+<!-- <script>
+document.getElementById('llamarBtn').addEventListener('click', async () => {
+  const nombrePatron = 'CAJA';
+  const response = await fetch(`/llamar-pa3/${nombrePatron}`);
+  
+  if (response.ok) {
+    const data = await response.json();
+    const outputList = document.getElementById('outputList');
+    
+    // Limpiar la lista de resultados existentes
+    outputList.innerHTML = '';
+
+    // Agregar los resultados a la lista
+    data.output.forEach(line => {
+      const li = document.createElement('li');
+      li.textContent = line;
+      outputList.appendChild(li);
+    });
+  } else {
+    console.error('Error al llamar al PA');
+  }
+});
+</script> -->
+<input type="text" id="nombrePatronInput" placeholder="Ingrese un valor">
+<button id="llamarBtn">Buscar Medicamento</button>
+<ul id="outputList"></ul>
+
+ <script>
+document.getElementById('llamarBtn').addEventListener('click', async () => {
+  const nombrePatron = document.getElementById('nombrePatronInput').value;
+  const response = await fetch(`/llamar-pa3/${nombrePatron}`);
+  
+  if (response.ok) {
+    const data = await response.json();
+    const outputList = document.getElementById('outputList');
+    
+    // Limpiar la lista de resultados existentes
+    outputList.innerHTML = '';
+
+    // Agregar los resultados a la lista
+    data.output.forEach(line => {
+      const li = document.createElement('li');
+      li.textContent = line;
+      outputList.appendChild(li);
+    });
+  } else {
+    console.error('Error al llamar al PA');
+  }
+});
+</script> 
+
+
+    
+
 </body>
+
 <script src="../JS/index.js"></script>
 </html>
