@@ -234,8 +234,129 @@ router.get('/llamar-funcion', async (req, res) => {
 });
 
 
+router.get('/llamar-pa', async (req, res) => {
+  try {
+    const connection = await oracledb.getConnection();
+
+    // Definir el código PL/SQL del procedimiento almacenado
+    const plsqlCode = `
+      BEGIN
+        PA_BuscarMedicamentoPorNombre(:p_nombre_patron);
+      END;
+    `;
+
+    const bindVars = {
+      p_nombre_patron: 'CAJA', // Cambia esto al patrón que desees buscar
+    };
+
+    // Ejecutar el procedimiento almacenado
+    await connection.execute(plsqlCode, bindVars);
+
+    connection.close();
+
+    res.json({ success: true, message: 'Procedimiento ejecutado exitosamente' });
+  } catch (error) {
+    console.error('Error al ejecutar el procedimiento:', error);
+    res.status(500).json({ success: false, error: 'Error al ejecutar el procedimiento' });
+  }
+});
 
 
+
+router.get('/llamar-pa2', async (req, res) => {
+  try {
+    const connection = await oracledb.getConnection();
+
+    // Habilitar el buffer de salida DBMS_OUTPUT para la conexión actual
+    await connection.execute('BEGIN DBMS_OUTPUT.ENABLE(NULL); END;');
+
+    // Definir el código PL/SQL del procedimiento almacenado
+    const plsqlCode = `
+      BEGIN
+        PA_BuscarMedicamentoPorNombre(:p_nombre_patron);
+      END;
+    `;
+
+    const bindVars = {
+      p_nombre_patron: 'CAJA', // Cambia esto al patrón que desees buscar
+    };
+
+    // Ejecutar el procedimiento almacenado
+    await connection.execute(plsqlCode, bindVars);
+
+    // Recuperar y guardar los resultados del buffer DBMS_OUTPUT en un arreglo
+    const outputLines = [];
+    let outputLine = '';
+    do {
+      const result = await connection.execute('BEGIN DBMS_OUTPUT.GET_LINE(:line, :status); END;',
+        { line: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 32767 },
+          status: { dir: oracledb.BIND_OUT, type: oracledb.NUMBER }
+        }
+      );
+
+      outputLine = result.outBinds.line;
+      if (outputLine) {
+        outputLines.push(outputLine);
+        console.log(outputLine);
+      }
+    } while (outputLine);
+
+    connection.close();
+
+    res.json({ success: true, message: 'Procedimiento ejecutado exitosamente', output: outputLines });
+  } catch (error) {
+    console.error('Error al ejecutar el procedimiento:', error);
+    res.status(500).json({ success: false, error: 'Error al ejecutar el procedimiento' });
+  }
+});
+
+router.get('/llamar-pa3/:nombre_patron', async (req, res) => {
+  try {
+    const { nombre_patron } = req.params; // Obtener el valor del parámetro desde la URL
+    const connection = await oracledb.getConnection();
+
+    // Habilitar el buffer de salida DBMS_OUTPUT para la conexión actual
+    await connection.execute('BEGIN DBMS_OUTPUT.ENABLE(NULL); END;');
+
+    // Definir el código PL/SQL del procedimiento almacenado
+    const plsqlCode = `
+      BEGIN
+        PA_BuscarMedicamentoPorNombre(:p_nombre_patron);
+      END;
+    `;
+
+    const bindVars = {
+      p_nombre_patron: nombre_patron, // Utilizar el valor del parámetro en el bindVars
+    };
+
+    // Ejecutar el procedimiento almacenado
+    await connection.execute(plsqlCode, bindVars);
+
+    // Recuperar y guardar los resultados del buffer DBMS_OUTPUT en un arreglo
+    const outputLines = [];
+    let outputLine = '';
+    do {
+      const result = await connection.execute('BEGIN DBMS_OUTPUT.GET_LINE(:line, :status); END;',
+        { line: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 32767 },
+          status: { dir: oracledb.BIND_OUT, type: oracledb.NUMBER }
+        }
+      );
+
+      outputLine = result.outBinds.line;
+      if (outputLine) {
+        outputLines.push(outputLine);
+        console.log(outputLine);
+      }
+    } while (outputLine);
+
+    connection.close();
+
+    res.json({ success: true, message: 'Procedimiento ejecutado exitosamente', output: outputLines });
+  } catch (error) {
+    console.error('Error al ejecutar el procedimiento:', error);
+    res.status(500).json({ success: false, error: 'Error al ejecutar el procedimiento' });
+  }
+});
 
 
 
