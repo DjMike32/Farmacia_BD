@@ -9,47 +9,45 @@
 <body>
    
 
+    <button class="boton-regresar" onclick="window.location.href = 'admiMenu.html';">Volver a Medicamentos</button>
 
-<<button id="btnAbrirModal">Agregar Medicamento</button>
+    <h1 class="titulo-grande">Inventario de Medicamentos</h1> <br>
+
+<!-- <button id="btnAbrirModal">Agregar Medicamento</button> -->
+
+<button onclick="window.location.href = 'agregarnuevomedicamento.html';">+ Agregar nuevo medicamento</button>
+
 
 <!-- Ventana modal para agregar medicamento -->
-<div id="modalAgregarMedicamento" class="modal">
-  <div class="modal-content">
-    <span class="modal-close">&times;</span>
-    <h2>Agregar Medicamento</h2>
-    <form id="agregarMedicamentoForm">
-        <label for="nombre_medicamento">Nombre Medicamento:</label>
-        <input type="text" id="nombre_medicamento" name="nombre_medicamento" required>
-      
-        <label for="no_lote">Número de Lote:</label>
-        <input type="text" id="no_lote" name="no_lote" required>
-      
-        <label for="id_producto_tm">ID Producto:</label>
-        <input type="number" id="id_producto_tm" name="id_producto_tm" required>
-      
-        <label for="id_tipo_medicamento">ID Tipo Medicamento:</label>
-        <input type="number" id="id_tipo_medicamento" name="id_tipo_medicamento" required>
-      
-        <label for="img">Imagen:</label>
-        <input type="text" id="img" name="img" required>
-      
-        <label for="precio">Precio:</label>
-        <input type="number" id="precio" name="precio" required>
-      
-        <label for="existencias">Existencias:</label>
-        <input type="number" id="existencias" name="existencias" required>
-      
-        <label for="fecha_vencimiento">Fecha Vencimiento:</label>
-        <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" required>
-      
-        <label for="fecha_laboracion">Fecha Elaboración:</label>
-        <input type="date" id="fecha_laboracion" name="fecha_laboracion" required>
-      <button type="submit">Agregar</button>
-    </form>
-  </div>
-</div>
-  
 
+  
+<input type="text" id="nombrePatronInput" placeholder="Ingrese un valor">
+<button id="llamarBtn">Buscar Medicamento</button>
+<ul id="outputList"></ul>
+
+ <script>
+document.getElementById('llamarBtn').addEventListener('click', async () => {
+  const nombrePatron = document.getElementById('nombrePatronInput').value;
+  const response = await fetch(`/llamar-pa3/${nombrePatron}`);
+  
+  if (response.ok) {
+    const data = await response.json();
+    const outputList = document.getElementById('outputList');
+    
+    // Limpiar la lista de resultados existentes
+    outputList.innerHTML = '';
+
+    // Agregar los resultados a la lista
+    data.output.forEach(line => {
+      const li = document.createElement('li');
+      li.textContent = line;
+      outputList.appendChild(li);
+    });
+  } else {
+    console.error('Error al llamar al PA');
+  }
+});
+</script> 
 
     
     <!-- Estructura de la¿os valores de la tabla -->
@@ -76,41 +74,35 @@
     </table>
   </div>
 
-  <div class="modal" id="modalAgregarMedicamento">
-    <div class="modal-content">
-        <h2>Agregar Medicamento</h2>
-        <form id="agregarMedicamentoForm">
-            <label for="nombre_medicamento">Nombre Medicamento:</label>
-            <input type="text" id="nombre_medicamento" name="nombre_medicamento" required>
-            
-            <label for="no_lote">Número de Lote:</label>
-            <input type="text" id="no_lote" name="no_lote" required>
-            
-            <label for="id_producto_tm">ID Producto TM:</label>
-            <input type="number" id="id_producto_tm" name="id_producto_tm" required>
-            
-            <label for="id_tipo_medicamento">ID Tipo Medicamento:</label>
-            <input type="number" id="id_tipo_medicamento" name="id_tipo_medicamento" required>
-            
-            <label for="img">Imagen:</label>
-            <input type="text" id="img" name="img" required>
-            
-            <label for="precio">Precio:</label>
-            <input type="number" id="precio" name="precio" required>
-            
-            <label for="existencias">Existencias:</label>
-            <input type="number" id="existencias" name="existencias" required>
-            
-            <label for="fecha_vencimiento">Fecha Vencimiento:</label>
-            <input type="text" id="fecha_vencimiento" name="fecha_vencimiento" placeholder="DD-MM-YYYY" required>
-            
-            <label for="fecha_laboracion">Fecha Elaboración:</label>
-            <input type="text" id="fecha_laboracion" name="fecha_laboracion" placeholder="DD-MM-YYYY" required>
-            
-            <button type="submit">Agregar</button>
-        </form>
-    </div>
-</div>
+  
+  <style>
+    .boton-regresar {
+      background-color: #2cbccf;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 2%;
+    }
+
+    .boton-regresar:hover {
+      background-color: #2980b9;
+    }
+
+    .titulo-grande {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    body{
+        background-color: rgb(227, 247, 240);
+    }
+  </style>
 
   <script>
     

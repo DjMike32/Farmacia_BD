@@ -192,13 +192,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-function redireccionar() {
-  // Redirige al usuario a la página de destino
-  window.location.href = "admiMenu.html";
-  setTimeout(function() {
-    window.location.href = "pagina_destino.html";
-}, 2000);
-}
+// function redireccionar() {
+//   // Redirige al usuario a la página de destino
+//   window.location.href = "admiMenu.html";
+//   setTimeout(function() {
+//     window.location.href = "pagina_destino.html";
+// }, 2000);
+// }
 
 
 

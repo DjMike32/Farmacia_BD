@@ -1,20 +1,4 @@
 
-// const express = require('express');
-// const router = express.Router();
-// const oracledb = require('oracledb');
-// const app = express();
-// app.use(express.json());
-// const bodyParser = require("body-parser"); router.use(bodyParser.json());
-// app.use((req, res, next) => {
-//   console.log(`Solicitud a: ${req.method} ${req.url}`);
-//   next(); 
-// });
-
-// const dbConfig = {
-//   user: 'Michael',
-//   password: 'admin',
-//   connectString: 'localhost:1521/xe'
-// };
 
 
 const express = require('express');

@@ -6,7 +6,11 @@
   <link rel="stylesheet" href="../css/syles-formulario.css">
 </head>
 <body>
-  <h2>Agregar Medicamento</h2>
+    <button class="boton-regresar" onclick="window.location.href = 'listarmedicamentos2.html';">Regresar al Inventario</button>
+
+    <h1 class="titulo-grande">Ingresa los valores para el nuevo medicamento</h1> <br>
+
+
   <form id="agregarMedicamentoForm">
     <label for="nombre_medicamento">Nombre Medicamento:</label>
     <input type="text" id="nombre_medicamento" name="nombre_medicamento" required>
@@ -35,8 +39,30 @@
     <label for="fecha_laboracion">Fecha Elaboración:</label>
     <input type="date" id="fecha_laboracion" name="fecha_laboracion" required>
     
-    <button type="submit">Agregar</button>
+    <button type="submit" onclick="validarFormulario()">Agregar</button>
   </form>
+
+  <style>
+    .boton-regresar {
+      background-color: #2cbccf;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .boton-regresar:hover {
+      background-color: #2980b9;
+    }
+
+   
+  </style>
+
 
   <script src="../JS/agregarMedicamento.js"></script>
 </body>
